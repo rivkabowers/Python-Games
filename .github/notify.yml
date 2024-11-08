@@ -18,5 +18,3 @@ jobs:
         curl -X POST https://student-registration.do.jointheleague.org/github/activity \
         -H "Content-Type: application/json" \
           -d '{"username": "'"${GITHUB_USERNAME}"'",  "date_time": "'"${DATE_TIME}"'", "repo_url": "'"${REPO_URL}"'", "commit": "'"${COMMIT}"'", "event_type": "'"${EVENT_TYPE}"'"}'
-
-          
