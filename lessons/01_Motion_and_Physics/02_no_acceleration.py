@@ -14,7 +14,7 @@ SQUARE_SPEED = 5
 
 # Set up the display
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Moving Red Square")
+pygame.display.set_caption("Moving Square")
 
 # Square starting position
 x_pos = 0
@@ -35,7 +35,7 @@ while running:
 
     # Check for screen bounds and reverse direction if necessary
     if x_pos + SQUARE_SIZE > SCREEN_WIDTH:
-        direction = -1  # Move left
+        direction = -1 # Move left
     elif x_pos < 0:
         direction = 1  # Move right
 
