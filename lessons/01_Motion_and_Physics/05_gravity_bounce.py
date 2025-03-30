@@ -51,14 +51,23 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
+        keys = pygame.key.get_pressed()
+  
     # Continuously jump. If the player is not jumping, make it jump
     if is_jumping is False:
         # Jumping means that the player is going up. The top of the 
         # screen is y=0, and the bottom is y=settings.screen_height. So, to go up,
         # we need to have a negative y velocity
-        
-        player_y_velocity = -settings.jump_y_velocity
-        player_x_velocity = settings.jump_x_velocity * x_direction
+        if keys[pygame.K_SPACE]:
+            player_y_velocity = -settings.jump_y_velocity
+            player.y += player_y_velocity
+        if keys[pygame.K_LEFT]:
+            player_x_velocity = -settings.jump_x_velocity
+            player.x += player_x_velocity
+        if keys[pygame.K_RIGHT]:
+            player_x_velocity = settings.jump_x_velocity
+            player.x = player_x_velocity
+
         
         is_jumping = True
         
@@ -75,11 +84,18 @@ while running:
     # If the player hits one side of the screen or the other, bounce the player
     if player.left <= 0 or player.right >= settings.screen_width:
         player_x_velocity = -player_x_velocity
-        
+         
         # One way to change direction. 
-        x_direction = -x_direction 
-        # But this way is more reliable, since it will always be 1 or -1 and dir is tied to velocity
-        x_direction = player_x_velocity // abs(player_x_velocity)
+        # x_direction = -x_direction 
+        # # But this way is more reliable, since it will always be 1 or -1 and dir is tied to velocity
+        # x_direction = player_x_velocity // abs(player_x_velocity)
+        if keys[pygame.K_a]:
+            player_x_velocity = -settings.jump_x_velocity
+            player.x += player_x_velocity
+        if keys[pygame.K_d]:
+            player_x_velocity = settings.jump_x_velocity
+            player.x = player_x_velocity
+
 
     # If the player hits the top of the screen, bounce the player
     if player.top <= 0:
