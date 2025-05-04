@@ -23,7 +23,7 @@ pygame.init()
 class GameSettings:
     """Class for keeping track of game settings."""
     screen_width: int = 600
-    screen_height: int = 550
+    screen_height: int = 500
     player_size: int = 10
     player_x: int = 100 # Initial x position of the player
     gravity: float = 0.3 # acelleration, the change in velocity per frame

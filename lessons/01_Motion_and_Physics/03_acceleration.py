@@ -5,7 +5,7 @@ pygame.init()
 
 # Constants
 SCREEN_WIDTH, SCREEN_HEIGHT = 600, 600
-SQUARE_SIZE = 50
+SQUARE_SIZE = 55
 SQUARE_COLOR = (255, 0, 0)  # Red
 K = .0004
 

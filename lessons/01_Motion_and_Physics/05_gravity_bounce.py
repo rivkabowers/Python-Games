@@ -13,20 +13,21 @@ from dataclasses import dataclass
 class Settings:
     """Class for keeping track of game settings and constants."""
     screen_width: int = 600
-    screen_height: int = 550
+    screen_height: int = 500
     white: tuple = (255, 255, 255)
     black: tuple = (0, 0, 0)
     red: tuple = (255, 0, 0)
-    player_size: int = 20
+    player_size: int = 10
     gravity: int = 1
     jump_y_velocity: int = 30
     jump_x_velocity: int = 10
+    fps = 200
 
 # Initialize Pygame
 pygame.init()
 
 # Create an instance of Settings
-settings = Settings()
+settings = Settings()        
 
 # Initialize screen
 screen = pygame.display.set_mode((settings.screen_width, settings.screen_height))
