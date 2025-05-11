@@ -1,5 +1,9 @@
 import pygame
 import math
+from pathlib import Path
+
+
+assets = Path(__file__).parent / "images"
 
 # Settings class to store game configuration
 class Settings:
@@ -10,9 +14,10 @@ class Settings:
         self.triangle_size = 20
         self.projectile_speed = 5
         self.colors = {
-            'white': (255, 255, 255),
+            'red': (255, 0, 0),
             'black': (0, 0, 0),
-            'red': (255, 0, 0)
+            'dark red': (100, 0, 0),
+            'white': (255, 255, 255)
         }
 
 # Spaceship class to handle player movement and drawing
@@ -21,6 +26,7 @@ class Spaceship:
         self.settings = settings
         self.position = pygame.Vector2(self.settings.width // 2, self.settings.height // 2)
         self.angle = 0
+       
 
     def handle_input(self):
         keys = pygame.key.get_pressed()
@@ -32,11 +38,11 @@ class Spaceship:
     def draw(self, surface):
         points = [
             pygame.Vector2(0, -self.settings.triangle_size),  # top point
-            pygame.Vector2(-self.settings.triangle_size / 2, self.settings.triangle_size),  # left side point
-            pygame.Vector2(self.settings.triangle_size / 2, self.settings.triangle_size)  # right side point
+            pygame.Vector2(-self.settings.triangle_size / 3, self.settings.triangle_size),  # left side point
+            pygame.Vector2(self.settings.triangle_size / 3, self.settings.triangle_size)  # right side point
         ]
         rotated_points = [point.rotate(self.angle) + self.position for point in points]
-        pygame.draw.polygon(surface, self.settings.colors['white'], rotated_points)
+        pygame.draw.polygon(surface, self.settings.colors['black'], rotated_points)
 
 # Projectile class to handle projectile movement and drawing
 class Projectile:
@@ -44,12 +50,12 @@ class Projectile:
         self.position = position.copy()
         self.direction = pygame.Vector2(0, -1).rotate(angle)
         self.settings = settings
-
+        
     def move(self):
         self.position += self.direction * self.settings.projectile_speed
 
     def draw(self, surface):
-        pygame.draw.circle(surface, self.settings.colors['red'], (int(self.position.x), int(self.position.y)), 5)
+        pygame.draw.circle(surface, self.settings.colors['red'], (int(self.position.x), int(self.position.y)), 10)
 
 # Game class to manage the game loop and objects
 class Game:
@@ -68,7 +74,7 @@ class Game:
             if event.type == pygame.QUIT:
                 self.running = False
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
+                if event.key == pygame.K_UP:
                     # Create and fire a projectile
                     new_projectile = Projectile(self.spaceship.position, self.spaceship.angle, self.settings)
                     self.projectiles.append(new_projectile)
@@ -84,7 +90,7 @@ class Game:
                 self.projectiles.remove(projectile)
 
     def draw(self):
-        self.screen.fill(self.settings.colors['black'])
+        self.screen.fill(self.settings.colors['dark red'])
         self.spaceship.draw(self.screen)
         for projectile in self.projectiles:
             projectile.draw(self.screen)
@@ -98,6 +104,10 @@ class Game:
             self.clock.tick(self.settings.fps)
         pygame.quit()
 
+class AlienSpaceship(Spaceship):
+    def create_spaceship_image(self):
+        return pygame.image.load(assets/'alien1.gif')
+   
 # Start the game
 if __name__ == "__main__":
     game = Game()

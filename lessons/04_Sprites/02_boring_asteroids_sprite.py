@@ -12,7 +12,7 @@ class Settings:
     projectile_speed = 5
     projectile_size = 11
     shoot_delay = 250  # 250 milliseconds between shots, or 4 shots per second
-    colors = {"white": (255, 255, 255), "black": (0, 0, 0), "red": (255, 0, 0)}
+    colors = {"white": (255, 255, 255), "black": (0, 0, 0), "red": (255, 0, 0), "maroon": (100, 0, 0)}
 
 
 # Notice that this Spaceship class is a bit different: it is a subclass of
@@ -52,7 +52,7 @@ class Spaceship(pygame.sprite.Sprite):
             (0, self.settings.triangle_size * 2),  # left side point
             (self.settings.triangle_size * 2,self.settings.triangle_size * 2, ),  # right side point
         ]
-        pygame.draw.polygon(image, self.settings.colors["white"], points)
+        pygame.draw.polygon(image, self.settings.colors["black"], points)
         return image
 
     def ready_to_shoot(self):
@@ -189,7 +189,7 @@ class Game:
         self.all_sprites.update()
 
     def draw(self):
-        self.screen.fill(self.settings.colors["black"])
+        self.screen.fill(self.settings.colors["maroon"])
 
         # The sprite group has a draw method that will draw all of the sprites in
         # the group.

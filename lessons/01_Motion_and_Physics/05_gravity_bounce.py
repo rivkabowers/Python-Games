@@ -13,7 +13,7 @@ from dataclasses import dataclass
 class Settings:
     """Class for keeping track of game settings and constants."""
     screen_width: int = 600
-    screen_height: int = 500
+    screen_height: int = 550 
     white: tuple = (255, 255, 255)
     black: tuple = (0, 0, 0)
     red: tuple = (255, 0, 0)
