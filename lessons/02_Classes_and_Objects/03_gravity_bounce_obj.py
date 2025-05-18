@@ -12,15 +12,16 @@ import pygame
 
 class Colors:
     """Constants for Colors"""
-    WHITE = (255, 255, 255)
+    WHITE = (225, 172, 150)
     BLACK = (0, 0, 0)
     RED = (255, 0, 0)
-
+    BLUE = (200, 73, 110)
+    BROWN = (53,31,16)
 
 class GameSettings:
     """Settings for the game"""
-    width: int = 500
-    height: int = 500
+    width: int = 600
+    height: int = 550
     gravity: float = 0.3
     player_start_x: int = 100
     player_start_y: int = None
@@ -71,15 +72,15 @@ class Game:
         pygame.quit()
 
 
-class Player:
+class FirstEye:
     """Player class, just a bouncing rectangle"""
 
     def __init__(self, game: Game):
         self.game = game
         settings = game.settings
 
-        self.width = settings.player_width
-        self.height = settings.player_height
+        self.width = 50
+        self.height = 50
       
         self.is_jumping = False
         self.v_jump = settings.player_jump_velocity
@@ -128,11 +129,136 @@ class Player:
         pygame.draw.rect(screen, Colors.BLACK, (self.x, self.y, self.width, self.height))
 
 
+
+
+class Eye:
+    """Player class, just a bouncing rectangle"""
+
+    def __init__(self, game: Game):
+        self.game = game
+        settings = game.settings
+
+        self.width = 50
+        self.height = 50
+       
+        self.is_jumping = False
+        self.v_jump = 16
+        self.y = settings.player_start_y if settings.player_start_y is not None else settings.height - self.height
+        self.x = settings.player_start_x
+        
+        self.v_x = 9 # X Velocity
+        self.v_y = 11  # Y Velocity
+
+    def update(self):
+        """Update player position, continuously jumping"""
+        self.update_jump()
+        self.update_y()
+        self.update_x()
+
+    def update_y(self):
+        """Update the player's y position based on gravity and velocity"""
+        self.v_y += self.game.settings.gravity  # Add gravity to the y velocity
+        self.y += self.v_y  # Update the player's y position, based on the current velocity
+
+        if self.y >= self.game.settings.height - self.height:
+            self.y = self.game.settings.height - self.height
+            self.v_y = 0
+            self.is_jumping = False
+
+    def update_x(self):
+        """Update the player's x position based on horizontal velocity and bounce on edges"""
+        self.x += self.v_x  # Update the player's x position based on the current velocity
+
+        if self.x <= 0:
+            self.x = 0
+            self.v_x = -self.v_x
+        elif self.x >= self.game.settings.width - self.width:
+            self.x = self.game.settings.width - self.width
+            self.v_x = -self.v_x
+
+    def update_jump(self):
+        """Handle the player's jumping logic"""
+        
+        if not self.is_jumping:
+            self.v_y = -self.v_jump
+            self.is_jumping = True
+
+    def draw(self, screen):
+        pygame.draw.rect(screen, Colors.BLACK, (self.x, self.y, self.width, self.height))
+
+
+
+
+class Mouth:
+    """Player class, just a bouncing rectangle"""
+
+    def __init__(self, game: Game):
+        self.game = game
+        settings = game.settings
+
+        self.width = 80
+        self.height = 20
+      
+        self.is_jumping = False
+        self.v_jump = 13
+
+        self.y = settings.player_start_y if settings.player_start_y is not None else settings.height - self.height
+        self.x = 0
+        
+        self.v_x = 10 # X Velocity
+        self.v_y = 20  # Y Velocity
+
+    def update(self):
+        """Update player position, continuously jumping"""
+        self.update_jump()
+        self.update_y()
+        self.update_x()
+
+    def update_y(self):
+        """Update the player's y position based on gravity and velocity"""
+        self.v_y += self.game.settings.gravity  # Add gravity to the y velocity
+        self.y += self.v_y  # Update the player's y position, based on the current velocity
+
+        if self.y >= self.game.settings.height - self.height:
+            self.y = self.game.settings.height - self.height
+            self.v_y = 0
+            self.is_jumping = False
+
+    def update_x(self):
+        """Update the player's x position based on horizontal velocity and bounce on edges"""
+        self.x += self.v_x  # Update the player's x position based on the current velocity
+
+        if self.x <= 0:
+            self.x = 0
+            self.v_x = -self.v_x
+        elif self.x >= self.game.settings.width - self.width:
+            self.x = self.game.settings.width - self.width
+            self.v_x = -self.v_x
+
+    def update_jump(self):
+        """Handle the player's jumping logic"""
+        
+        if not self.is_jumping:
+            self.v_y = -self.v_jump
+            self.is_jumping = True
+
+    def draw(self, screen):
+        pygame.draw.rect(screen, Colors.BLUE, (self.x, self.y, self.width, self.height))
+
+
+
 settings = GameSettings()
 game = Game(settings)
 
-p1 = Player(game)
+p1 = FirstEye(game)
 game.add_player(p1)
+
+p2 = Mouth(game)
+game.add_player(p2)
+
+p3 = Eye(game)
+game.add_player(p3)
+
 
 
 game.run()
