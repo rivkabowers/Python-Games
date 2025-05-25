@@ -9,13 +9,13 @@ class Settings:
     """A class to store all settings for the game."""
     SCREEN_WIDTH = 800
     SCREEN_HEIGHT = 600
-    PLAYER_SIZE = 20
-    LINE_COLOR = (0, 255, 0)
-    PLAYER_COLOR = (0, 0, 255)
+    PLAYER_SIZE = 30
+    LINE_COLOR = (200, 73, 80)
+    PLAYER_COLOR = (220, 172, 150)
     BACKGROUND_COLOR = (255, 255, 255)
-    TEXT_COLOR = (0, 0, 0)
+    TEXT_COLOR = (200, 73, 80)
     FPS = 30
-    ANGLE_CHANGE = 3
+    ANGLE_CHANGE = 5
     LENGTH_CHANGE = 5
     INITIAL_LENGTH = 100
     FONT_SIZE = 24

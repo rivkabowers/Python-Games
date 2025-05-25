@@ -15,73 +15,73 @@ class Person:
 class Parent(Person):
     """Parent represents a parent in our system."""
 
-    def __init__(self, name: str, age: int, spouse=None):
+    def __init__(self, name: str, age: int, pookie=None):
         """Initializes a new Parent object."""
         super().__init__(name, age) # Call Person.__init__ to initialize the name and age attributes
-        self.children = []
+        self.Babyren = []
         
-        # Set our spose but also set the spouse's spouse to us
-        if spouse:
-            self.spouse = spouse
-            spouse.spouse = self
+        # Set our spose but also set the pookie's pookie to us
+        if pookie:
+            self.pookie = pookie
+            pookie.pookie = self
         
-        self.spouse = None
+        self.pookie = None
 
-    def add_child(self, child: Person):
-        """Adds a child to the parent's list of children."""
-        self.children.append(child)
+    def add_Baby(self, Baby: Person):
+        """Adds a Baby to the parent's list of Babyren."""
+        self.Babyren.append(Baby)
         
 
     def say_hello(self, message: str):
         """Prints a greeting to the console."""
         
         super().say_hello(message)
-        if self.spouse:
-            print(f"My spouse is {self.spouse.name}")
+        if self.pookie:
+            print(f"My pookie is {self.pookie.name}")
             
-        print(f"I have {len(self.children)} children.")
+        print(f"I have {len(self.Babyren)} Babyren.")
 
-        if len(self.children) > 0:
+        if len(self.Babyren) > 0:
             print("Their names are:")
-            for child in self.children:
-                print(f"  {child.name} {child.age}")
+            for Baby in self.Babyren:
+                print(f"  {Baby.name} {Baby.age}")
                 
                 
-class Child(Person):
-    """Child represents a child in our system."""
+class Baby(Person):
+    """Baby represents a Baby in our system."""
 
     def __init__(self, name: str, age: int, parents: list):
-        """Initializes a new Child object."""
+        """Initializes a new Baby object."""
         super().__init__(name, age)  # Call Person.__init__ to initialize the name and age attributes
         self.parents = parents
 
     def say_hello(self, message: str):
         """Prints a greeting to the console."""
         super().say_hello(message)
-        print(f"My parents are {', '.join([parent.name for parent in self.parents])}")
+        print(f"My parents are {' and '.join([parent.name for parent in self.parents])}")
         
         
 # Now lets make a family
 mom = Parent("Hilary Bowers", 52)
 dad = Parent("Peter Bowers", 57, mom)
 
-Elijah = Child("Elijah Bowers", 20, [mom, dad])
-Miriam = Child("Miriam Bowers", 20, [mom, dad])
-Hannah = Child("Hannah Bowers", 18, [mom, dad])
-Naomi = Child("Naomi Bowers", 15, [mom, dad])
-Rivka = Child("Rivka Bowers", 13, [mom, dad])
+Elijah = Baby("Elijah Bowers", 20, [mom, dad])
+Miriam = Baby("Miriam Bowers", 20, [mom, dad])
+Hannah = Baby("Hannah Bowers", 18, [mom, dad])
+Naomi = Baby("Naomi Bowers", 15, [mom, dad])
+Rivka = Baby("Rivka Bowers", 13, [mom, dad])
 
-# Connect the children to the parents
-mom.add_child(Elijah)
-mom.add_child(Miriam)
-mom.add_child(Hannah)
-mom.add_child(Naomi)
-mom.add_child(Rivka)
-dad.add_child(Elijah)
-dad.add_child(Miriam)
-dad.add_child(Hannah)
-dad.add_child(Naomi)
-dad.add_child(Rivka)
+# Connect the Babyren to the parents
+mom.add_Baby(Elijah)
+mom.add_Baby(Miriam)
+mom.add_Baby(Hannah)
+mom.add_Baby(Naomi)
+mom.add_Baby(Rivka)
+dad.add_Baby(Elijah)
+dad.add_Baby(Miriam)
+dad.add_Baby(Hannah)
+dad.add_Baby(Naomi)
+dad.add_Baby(Rivka)
 
 
 

@@ -12,7 +12,7 @@ import pygame
 
 class Colors:
     """Constants for Colors"""
-    WHITE = (225, 172, 150)
+    WHITE = (220, 172, 150)
     BLACK = (0, 0, 0)
     RED = (255, 0, 0)
     BLUE = (200, 73, 110)
@@ -79,8 +79,8 @@ class FirstEye:
         self.game = game
         settings = game.settings
 
-        self.width = 50
-        self.height = 50
+        self.width = 55
+        self.height = 10
       
         self.is_jumping = False
         self.v_jump = settings.player_jump_velocity
@@ -138,7 +138,7 @@ class Eye:
         self.game = game
         settings = game.settings
 
-        self.width = 50
+        self.width = 55
         self.height = 50
        
         self.is_jumping = False

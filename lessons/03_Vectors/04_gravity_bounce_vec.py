@@ -16,15 +16,15 @@ class Colors:
     WHITE = (255, 255, 255)
     BLACK = (0, 0, 0)
     RED = (255, 0, 0)
-    PLAYER_COLOR = (0, 0, 255)
-    BACKGROUND_COLOR = (255, 255, 255)
+    PLAYER_COLOR = (200, 73, 80)
+    BACKGROUND_COLOR = (220, 172, 150)
 
 
 @dataclass
 class GameSettings:
     """Settings for the game"""
-    width: int = 500
-    height: int = 500
+    width: int = 600
+    height: int = 550
     gravity: float = 0.3
     player_start_x: int = 100
     player_start_y: int = None
@@ -88,6 +88,7 @@ class Player:
         # Player position
         self.pos = pygame.Vector2(settings.player_start_x, 
                                   settings.player_start_y if settings.player_start_y is not None else settings.height - self.height)
+        
         
         # Player's velocity
         self.vel = pygame.Vector2(settings.player_v_x, settings.player_v_y)  # Velocity vector

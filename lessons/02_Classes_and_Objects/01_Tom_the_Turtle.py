@@ -119,7 +119,7 @@ screen.fill(white)
 turtle = Turtle(screen, screen.get_width() // 2, screen.get_height() // 2)  # Start at the center of the screen
 
 # Draw a square using turtle-style commands
-for _ in range(4):
+for i in range(4):
     turtle.forward(90)  # Move forward by 100 pixels
     turtle.left(90)  # Turn left by 90 degrees
 
