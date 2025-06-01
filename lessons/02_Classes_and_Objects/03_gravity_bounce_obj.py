@@ -80,7 +80,7 @@ class FirstEye:
         settings = game.settings
 
         self.width = 55
-        self.height = 10
+        self.height = 50
       
         self.is_jumping = False
         self.v_jump = settings.player_jump_velocity

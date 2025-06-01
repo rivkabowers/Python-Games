@@ -11,12 +11,12 @@ class Settings:
         self.width = 800
         self.height = 600
         self.fps = 60
-        self.triangle_size = 20
+        self.triangle_size = 25
         self.projectile_speed = 5
         self.colors = {
-            'red': (255, 0, 0),
-            'black': (0, 0, 0),
-            'dark red': (100, 0, 0),
+            'red': (255, 238, 167),
+            'black': (255, 193, 203),
+            'dark red': (173, 216, 230),
             'white': (255, 255, 255)
         }
 
@@ -74,7 +74,7 @@ class Game:
             if event.type == pygame.QUIT:
                 self.running = False
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_UP:
+                if event.key == pygame.K_SPACE:
                     # Create and fire a projectile
                     new_projectile = Projectile(self.spaceship.position, self.spaceship.angle, self.settings)
                     self.projectiles.append(new_projectile)

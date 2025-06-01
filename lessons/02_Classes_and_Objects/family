@@ -15,35 +15,35 @@ class Person:
 class Parent(Person):
     """Parent represents a parent in our system."""
 
-    def __init__(self, name: str, age: int, pookie=None):
+    def __init__(self, name: str, age: int, husband=None):
         """Initializes a new Parent object."""
         super().__init__(name, age) # Call Person.__init__ to initialize the name and age attributes
-        self.Babyren = []
+        self.Babies = []
         
-        # Set our spose but also set the pookie's pookie to us
-        if pookie:
-            self.pookie = pookie
-            pookie.pookie = self
+        # Set our spose but also set the husband's husband to us
+        if husband:
+            self.husband = husband
+            husband.husband = self
         
-        self.pookie = None
+        self.husband = None
 
     def add_Baby(self, Baby: Person):
-        """Adds a Baby to the parent's list of Babyren."""
-        self.Babyren.append(Baby)
+        """Adds a Baby to the parent's list of Babies."""
+        self.Babies.append(Baby)
         
 
     def say_hello(self, message: str):
         """Prints a greeting to the console."""
         
         super().say_hello(message)
-        if self.pookie:
-            print(f"My pookie is {self.pookie.name}")
+        if self.husband:
+            print(f"My husband is {self.husband.name}")
             
-        print(f"I have {len(self.Babyren)} Babyren.")
+        print(f"I have {len(self.Babies)} Babies.")
 
-        if len(self.Babyren) > 0:
+        if len(self.Babies) > 0:
             print("Their names are:")
-            for Baby in self.Babyren:
+            for Baby in self.Babies:
                 print(f"  {Baby.name} {Baby.age}")
                 
                 
@@ -58,7 +58,7 @@ class Baby(Person):
     def say_hello(self, message: str):
         """Prints a greeting to the console."""
         super().say_hello(message)
-        print(f"My parents are {' and '.join([parent.name for parent in self.parents])}")
+        print(f"My parents are {' and '.join([parent.name for parent in self.parents])}.")
         
         
 # Now lets make a family
@@ -71,7 +71,7 @@ Hannah = Baby("Hannah Bowers", 18, [mom, dad])
 Naomi = Baby("Naomi Bowers", 15, [mom, dad])
 Rivka = Baby("Rivka Bowers", 13, [mom, dad])
 
-# Connect the Babyren to the parents
+# Connect the Babies to the parents
 mom.add_Baby(Elijah)
 mom.add_Baby(Miriam)
 mom.add_Baby(Hannah)
@@ -87,4 +87,4 @@ dad.add_Baby(Rivka)
 
 mom.say_hello("Hello!") # Call the say_hello method of the mom object
 print()
-Naomi.say_hello("Yo!")
+Naomi.say_hello(" ")

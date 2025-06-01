@@ -16,7 +16,7 @@ pygame.init()
 # This is a data class, one way of storing settings and constants for a game.
 # We will create an instance of the data class, but since there is only one of
 # them, we could also use the class directly, like GameSettings.screen_width.
-# You can check that the instance has the same values as the class:
+# You can check that the instance has the same  values as the class:
 #    settings = GameSettings()
 #    assert GameSettings.screen_width == settings.screen_width
 @dataclass
