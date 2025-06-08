@@ -1,5 +1,9 @@
 import pygame
 import math
+from pathlib import Path
+
+
+assets = Path(__file__).parent / "images"
 
 
 class Settings:
@@ -10,13 +14,13 @@ class Settings:
     fps = 60
     triangle_size = 20
     projectile_speed = 5
-    projectile_size = 11
-    shoot_delay = 30 # 250 milliseconds between shots, or 4 shots per second
-    colors = {"white": (255, 255, 255), "black": (0, 0, 0), "red": (255, 0, 0), "maroon": (100, 0, 0)}
+    projectile_size = 50
+    shoot_delay = .001 # 250 milliseconds between shots, or 4 shots per second
+    colors = {"white": (255, 255, 255), "black": (0, 0, 0), "maroon": (0, 0, 60), "red": (0, 255, 0)}
 
-
+# "red": (150, 75, 0),
 # Notice that this Spaceship class is a bit different: it is a subclass of
-# Sprite. Rather than a plain class, like in the previous examples, this class
+# Sprite. Rather than a plain class,  like in the previous examples, this class
 # inherits from the Sprite class. The main additional function of a Sprite is
 # that it can be added and removed from groups. This is useful for handling
 # multiple objects of the same type, like projectiles.
@@ -210,6 +214,14 @@ class Game:
 
         pygame.quit()
 
+class AlienSpaceship(Spaceship):
+    
+    def create_spaceship_image(self):
+        """Creates the spaceship shape as a surface."""
+        
+        return pygame.image.load(assets/'alien1.gif')
+
+
 
 if __name__ == "__main__":
 
@@ -217,7 +229,7 @@ if __name__ == "__main__":
 
     game = Game(settings)
 
-    spaceship = Spaceship(
+    spaceship = AlienSpaceship(
         settings, position=(settings.width // 2, settings.height // 2)
     )
 

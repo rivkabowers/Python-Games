@@ -14,8 +14,8 @@ from turtle import Turtle
 tom = Turtle()
 
 tom.shape('turtle')
-tom.speed(2)
-tom.pencolor('blue')
+tom.speed(5)
+tom.pencolor('lightblue')
 
 def event_loop():
     """Wait until user closes the window"""
@@ -55,7 +55,7 @@ for i in range (12):
 
 tom.penup()
 tom.goto(-90,-130)
-tom.pencolor('purple')
+tom.pencolor('pink')
 tom.pendown()
 for i in range (10):
     tom.forward(20)

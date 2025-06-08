@@ -9,6 +9,10 @@ understandable, and makes it easier to add more complex features to the game.
 """
 import pygame
 from dataclasses import dataclass
+from pathlib import Path
+
+
+assets = Path(__file__).parent / "images"
 
 
 class Colors:
@@ -195,7 +199,22 @@ class Player:
     def draw(self, screen):
         pygame.draw.rect(screen, Colors.PLAYER_COLOR, (self.pos.x, self.pos.y, self.width, self.height))
 
+class AlienSpaceship(Player):
+    
+    def create_Player_image(self):
+        """Creates the spaceship shape as a surface."""
+        
+        return pygame.image.load(assets/'alien1.gif')
 
 settings = GameSettings()
 game = Game(settings)
+game.run()
+
+
+
+
+Player = AlienSpaceship(
+    settings, position=(settings.width // 2, settings.height // 2)
+)
+game.add(Player)
 game.run()

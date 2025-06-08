@@ -1,5 +1,5 @@
 """
-Implementing Gravity
+Implimenting Gravity
 
 This program will demonstrate a simple implementation of gravity in a game, 
 the the player constantly jumping. Notice that using gravity makes the player

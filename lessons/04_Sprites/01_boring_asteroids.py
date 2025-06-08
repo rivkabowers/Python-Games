@@ -20,7 +20,7 @@ class Settings:
             'white': (255, 255, 255)
         }
 
-# Spaceship class to handle player movement and drawing
+#Spaceship class to handle player movement and drawing
 class Spaceship:
     def __init__(self, settings):
         self.settings = settings
@@ -106,6 +106,7 @@ class Game:
 
 class AlienSpaceship(Spaceship):
     def create_spaceship_image(self):
+
         return pygame.image.load(assets/'alien1.gif')
    
 # Start the game

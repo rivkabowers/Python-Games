@@ -6,12 +6,12 @@ pygame.init()
 # Constants
 SCREEN_WIDTH, SCREEN_HEIGHT = 600, 600
 SQUARE_SIZE = 55
-SQUARE_COLOR = (255, 0, 0)  # Red
-K = .0004
+SQUARE_COLOR = (180, 73, 90)  # Red
+K = .004
 
 # Set up the display
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("Accelerating Square")
+pygame.display.set_caption("Naomi's Face")
 
 # Square starting position
 x_pos = 20
@@ -45,7 +45,7 @@ while running:
     x_pos += velocity
 
     # Fill the screen with black (clears previous frame)
-    screen.fill((0, 0, 0))
+    screen.fill((220, 172, 150))
 
     # Draw the red square
     pygame.draw.rect(screen, SQUARE_COLOR, (x_pos, y_pos, SQUARE_SIZE, SQUARE_SIZE))
@@ -54,7 +54,7 @@ while running:
     pygame.display.flip()
 
     # Frame rate control
-    pygame.time.Clock().tick(60)
+    pygame.time.Clock().tick(100)
 
 # Quit Pygame
 pygame.quit()
