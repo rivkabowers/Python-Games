@@ -12,11 +12,12 @@ class Settings:
     width = 800
     height = 600
     fps = 60
-    triangle_size = 20
-    projectile_speed = 5
+    triangle_size = 100
+    projectile_speed = 5     
     projectile_size = 10
-    shoot_delay = .001 # 250 milliseconds between shots, or 4 shots per second
-    colors = {"white": (255, 255, 255), "black": (0, 0, 0), "maroon": (0, 0, 60), "red": (0, 255, 0)}
+    shoot_delay = 100 # 250 milliseconds between shots, or 4 shots per second
+    colors = {"white": (255, 255, 255), "black": (0, 0, 0),
+              "maroon": (0, 0, 60), "red": (252, 15, 192)}
 
 # "red": (150, 75, 0),
 # Notice that this Spaceship class is a bit different: it is a subclass of
@@ -24,6 +25,8 @@ class Settings:
 # inherits from the Sprite class. The main additional function of a Sprite is
 # that it can be added and removed from groups. This is useful for handling
 # multiple objects of the same type, like projectiles.
+
+
 class Spaceship(pygame.sprite.Sprite):
     """Class representing the spaceship."""
 
@@ -41,20 +44,22 @@ class Spaceship(pygame.sprite.Sprite):
         # For Sprites, the image and rect attributes are part of the Sprite class
         # and are important. The image is the surface that will be drawn on the screen
 
-        self.image = self.original_image.copy() 
+        self.image = self.original_image.copy()
         self.rect = self.image.get_rect(center=position)
 
         # These values help us limit the rate of fire
         self.last_shot = pygame.time.get_ticks()
-        self.shoot_delay = self.settings.shoot_delay  
+        self.shoot_delay = self.settings.shoot_delay
 
     def create_spaceship_image(self):
         """Creates the spaceship shape as a surface."""
-        image = pygame.Surface( (self.settings.triangle_size * 2, self.settings.triangle_size * 2),pygame.SRCALPHA)
+        image = pygame.Surface(
+            (self.settings.triangle_size * 2, self.settings.triangle_size * 2), pygame.SRCALPHA)
         points = [
             (self.settings.triangle_size, 0),  # top point
             (0, self.settings.triangle_size * 2),  # left side point
-            (self.settings.triangle_size * 2,self.settings.triangle_size * 2, ),  # right side point
+            (self.settings.triangle_size * 2,
+             self.settings.triangle_size * 2, ),  # right side point
         ]
         pygame.draw.polygon(image, self.settings.colors["black"], points)
         return image
@@ -65,7 +70,6 @@ class Spaceship(pygame.sprite.Sprite):
             self.last_shot = pygame.time.get_ticks()
             return True
         return False
-            
 
     def fire_projectile(self):
         """Creates and fires a projectile."""
@@ -81,14 +85,13 @@ class Spaceship(pygame.sprite.Sprite):
         # need to add the projectile to the group to make sure it is updated.
         self.game.add(new_projectile)
 
-
     # the Sprite class defines an update method that is called every frame. We
     # can override this method to add our own functionality. In this case, we
     # are going to handle input and update the image of the spaceship. However,
     # we also need to call the update method of the parent class, so we use
     # super().update()
     def update(self):
-        
+
         keys = pygame.key.get_pressed()
 
         if keys[pygame.K_LEFT]:
@@ -104,7 +107,7 @@ class Spaceship(pygame.sprite.Sprite):
 
         # Reassigning the rect because the image has changed.
         self.rect = self.image.get_rect(center=self.rect.center)
-        
+
         self.rect.center += self.velocity
 
         # Dont forget this part! If you don't call the Sprite update method, the
@@ -116,7 +119,6 @@ class Spaceship(pygame.sprite.Sprite):
     # screen. We only need to add the sprite to a group and the group will take
     # care of drawing the sprite.
 
-        
 
 class Projectile(pygame.sprite.Sprite):
     """Class to handle projectile movement and drawing."""
@@ -160,10 +162,10 @@ class Game:
     def __init__(self, settings):
         pygame.init()
         pygame.key.set_repeat(1250, 1250)
-        
+
         self.settings = settings
-        self.screen = pygame.display.set_mode((self.settings.width, self.settings.height))
-        
+        self.screen = pygame.display.set_mode(
+            (self.settings.width, self.settings.height))
 
         pygame.display.set_caption("Really Boring Asteroids")
 
@@ -203,9 +205,7 @@ class Game:
 
     def run(self):
         """Main Loop for the game."""
-        
-       
-        
+
         while self.running:
             self.handle_events()
             self.update()
@@ -214,13 +214,13 @@ class Game:
 
         pygame.quit()
 
+
 class AlienSpaceship(Spaceship):
-    
+
     def create_spaceship_image(self):
         """Creates the spaceship shape as a surface."""
-        
-        return pygame.image.load(assets/'alien1.gif')
 
+        return pygame.image.load(assets/'alien1.gif')
 
 
 if __name__ == "__main__":

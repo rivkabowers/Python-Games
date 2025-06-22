@@ -5,7 +5,7 @@ from pathlib import Path
 #VARIABLES
 SCREEN_WIDHT = 400
 SCREEN_HEIGHT = 600
-SPEED = 20
+SPEED = 10
 GRAVITY = 2.5
 GAME_SPEED = 15
 
@@ -19,7 +19,7 @@ PIPE_GAP = 150
 
 dd = Path(__file__).parent
 
-
+ 
 wing = dd/'assets/audio/wing.wav'
 hit = dd/'assets/audio/hit.wav'
 
